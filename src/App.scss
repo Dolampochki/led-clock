@@ -1,0 +1,83 @@
+
+/* theming */
+
+$black: #000;
+$primary: #7849ff;
+$white: #fff;
+
+$font: 'Roboto', sans-serif;
+
+/* general */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $primary;
+  font-family: $font;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  .App {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* clock */
+
+.clock {
+  background-color: $black;
+  border:  solid white;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  list-style: none;
+  text-transform: uppercase;
+  justify-content: space-between;
+  box-shadow: 0 1rem 2rem rgba($black, 0.5);
+  li {
+    font-size: 4rem;
+    color: $white;
+    opacity: 0.5;
+    text-shadow: 0 0 5px $white;
+    &.highlighted {
+      opacity: 1;
+      text-shadow: 0 0 10px $white;
+    }
+  }
+}
+
+@media screen and  (min-width: 768px) {
+  .clock {
+    width: 680px;
+    height: 720px;
+    border-width: 1rem;
+    padding: 1.25rem;
+    li {
+      font-size: 4rem;
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media screen and  (max-width: 767px) {
+  .clock {
+    width: 300px;
+    height: 320px;
+    padding: 0.75em;
+    li {
+      border-width: 0.5rem;
+      font-size: 1.75rem;
+      padding: 0 0.5rem;
+    }
+  }
+}

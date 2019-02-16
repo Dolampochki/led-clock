@@ -185,7 +185,7 @@ class ClockContent extends React.Component {
     clockHour = clockHour < 13 ? clockHour : clockHour - 12;
     clockHour = clockHour === 13 ? clockHour - 12 : clockHour;
     clockHour = clockHour === 0 ? 12 : clockHour;
-    clockExact = clockMinute === 0 ? true : false;
+    clockExact = clockMinute === 0 || clockMinute === 60 ? true : false;
     clockMinute = firstHalf ? clockMinute : 60 - clockMinute;
     clockMinute = clockMinute > 20 && clockMinute < 40 ? 30 : clockMinute;
     hasMinutesWord = allMinutesWord.includes(clockMinute) ? true : false;

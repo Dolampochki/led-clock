@@ -6,7 +6,6 @@ import './App.min.css';
 
 var clockTime;
 var clockExact;
-var firstHalf = true;
 var hasMinutesWord;
 
 const highlightedClass = "highlighted"
@@ -175,6 +174,7 @@ class ClockContent extends React.Component {
     var date = new Date();
     var clockHour = date.getHours();
     var clockMinute = date.getMinutes();
+    var firstHalf = true;
     clockMinute = Math.round(clockMinute/5)*5;
 
     if(clockMinute > 35 ) {

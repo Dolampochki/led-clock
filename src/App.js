@@ -118,18 +118,6 @@ class OClock extends Component {
   }
 }
 
-/* test */
-
-class Test extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <li>{this.props.testValue}</li>
-      </React.Fragment>
-    );
-  }
-}
-
 /* ClockContent */
 
 class ClockContent extends React.Component {
@@ -137,7 +125,6 @@ class ClockContent extends React.Component {
     super(props);
     clockTime = this.getTime();
     this.state = {
-      date: clockTime.date,
       clockMinute: clockTime.clockMinute,
       clockHour: clockTime.clockHour,
       clockExact: clockTime.clockExact,
@@ -160,7 +147,6 @@ class ClockContent extends React.Component {
   tick() {
     clockTime = this.getTime();
     this.setState({
-      date: clockTime.date,
       clockMinute: clockTime.clockMinute,
       clockHour: clockTime.clockHour,
       clockExact: clockTime.clockExact,
@@ -170,7 +156,6 @@ class ClockContent extends React.Component {
   }
 
   getTime = () => {
-    var date = new Date();
     var date = new Date();
     var clockHour = date.getHours();
     var clockMinute = date.getMinutes();
@@ -194,8 +179,7 @@ class ClockContent extends React.Component {
       clockHour: clockHour,
       clockExact: clockExact,
       firstHalf: firstHalf,
-      hasMinutesWord: hasMinutesWord,
-      date: date
+      hasMinutesWord: hasMinutesWord
     };
   }
 

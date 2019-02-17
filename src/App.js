@@ -176,7 +176,7 @@ class ClockContent extends React.Component {
     clockExact = clockMinute === 0 || clockMinute === 60 ? true : false;
     clockMinute = firstHalf ? clockMinute : 60 - clockMinute;
     //clockMinute = clockMinute > 20 && clockMinute < 40 ? 30 : clockMinute;
-    if(clockMinute === 25 ||  clockMinute === 35) {
+    if(clockMinute === 25) {
       clockMinute = 20;
       addFive = true;
     }

@@ -45,7 +45,7 @@ class StartText extends Component {
 class MinutesValues extends Component {
   getMinutesValue = () => {
     const minutesValue = minutesValues.map((value) =>
-      <li className={this.props.clockMinute === value.numValue ? highlightedClass : ""} key={value.stringValue.toString()}>{value.stringValue}</li>
+      <li className={this.props.clockMinute === value.numValue || value.numValue === 5 && this.props.addFive ? highlightedClass : ""} key={value.stringValue.toString()}>{value.stringValue}</li>
     );
     return minutesValue;
   }
@@ -129,7 +129,8 @@ class ClockContent extends React.Component {
       clockHour: clockTime.clockHour,
       clockExact: clockTime.clockExact,
       firstHalf: clockTime.firstHalf,
-      hasMinutesWord: clockTime.hasMinutesWord
+      hasMinutesWord: clockTime.hasMinutesWord,
+      addFive: clockTime.addFive
     };
   }
 
@@ -151,7 +152,8 @@ class ClockContent extends React.Component {
       clockHour: clockTime.clockHour,
       clockExact: clockTime.clockExact,
       firstHalf: clockTime.firstHalf,
-      hasMinutesWord: clockTime.hasMinutesWord
+      hasMinutesWord: clockTime.hasMinutesWord,
+      addFive: clockTime.addFive
     });
   }
 
@@ -160,6 +162,7 @@ class ClockContent extends React.Component {
     var clockHour = date.getHours();
     var clockMinute = date.getMinutes();
     var firstHalf = true;
+    var addFive = false;
     clockMinute = Math.round(clockMinute/5)*5;
 
     if(clockMinute > 35 ) {
@@ -172,21 +175,26 @@ class ClockContent extends React.Component {
     clockHour = clockHour === 0 ? 12 : clockHour;
     clockExact = clockMinute === 0 || clockMinute === 60 ? true : false;
     clockMinute = firstHalf ? clockMinute : 60 - clockMinute;
-    clockMinute = clockMinute > 20 && clockMinute < 40 ? 30 : clockMinute;
+    //clockMinute = clockMinute > 20 && clockMinute < 40 ? 30 : clockMinute;
+    if(clockMinute === 25 ) {
+      clockMinute = 20;
+      addFive = true;
+    }
     hasMinutesWord = allMinutesWord.includes(clockMinute) ? true : false;
     return {
       clockMinute: clockMinute,
       clockHour: clockHour,
       clockExact: clockExact,
       firstHalf: firstHalf,
-      hasMinutesWord: hasMinutesWord
+      hasMinutesWord: hasMinutesWord,
+      addFive: addFive
     };
   }
 
   render() {
     return (
       <React.Fragment>
-        <MinutesValues clockMinute={this.state.clockMinute} />
+        <MinutesValues clockMinute={this.state.clockMinute} addFive={this.state.addFive} />
         <MinutesWord hasMinutesWord={this.state.hasMinutesWord} />
         <ToPast firstHalf={this.state.firstHalf} clockExact={this.state.clockExact}  />
         <Hours clockHour={this.state.clockHour} />

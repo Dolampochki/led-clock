@@ -45,7 +45,7 @@ class StartText extends Component {
 class MinutesValues extends Component {
   getMinutesValue = () => {
     const minutesValue = minutesValues.map((value) =>
-      <li className={this.props.clockMinute === value.numValue || value.numValue === 5 && this.props.addFive ? highlightedClass : ""} key={value.stringValue.toString()}>{value.stringValue}</li>
+      <li className={value.numValue === 5 && this.props.addFive || this.props.clockMinute === value.numValue ? highlightedClass : ""} key={value.stringValue.toString()}>{value.stringValue}</li>
     );
     return minutesValue;
   }
